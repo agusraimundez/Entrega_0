@@ -58,7 +58,7 @@ function listar(currentCategoriesArray){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(products.cost) <= maxCount))){
 
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action" onclick="setProdID(${products.id})">
+            <div class="list-group-item list-group-item-action pointer" onclick="setProdID(${products.id})">
             <div class="row">
                 <div class="col-3">
                     <img src="` + products.image + `" alt="product image" class="img-thumbnail">

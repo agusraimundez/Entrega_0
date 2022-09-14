@@ -1,4 +1,5 @@
 let enlaceInfo = PRODUCT_INFO_URL + localStorage.getItem('prodID') + EXT_TYPE;
+let enlaceComent = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem('prodID') + EXT_TYPE;
 let info_container = document.getElementById("info-container");
 
 
@@ -30,12 +31,55 @@ function mostrarInfo(productInfo){
     document.getElementById("info-container").innerHTML = htmlContentToAppend; 
 }
 
+function mostrarComentarios(comentarios){
+    let htmlContentToAppend = "";
+
+    for(let i = 0; i < comentarios.length; i++){
+        let comment = comentarios[i];
+
+        htmlContentToAppend += `
+        <div id="comments-container">
+        <TABLE BORDER>
+            <TR>
+                <TD><b>${comentarios[i].user}</b>-${comentarios[i].dateTime}-${mostrarEstrellas(comentarios[i].score)}</TD>
+            </TR>
+            <TR>
+                <TD>${comentarios[i].description}</TD>
+            </TR>
+        </TABLE>
+         </div>
+        `      
+        document.getElementById("comments-container").innerHTML = htmlContentToAppend; 
+    }
+}
+
+function mostrarEstrellas(cant){
+    let estrellas='';
+
+    for (let i = 1; i <= 5; i++) {
+        if(i<=cant){
+            estrellas += '<i class="fas fa-star checked"></i>';
+        }else{
+            estrellas += '<i class="far fa-star"></i>';
+        }
+        
+    }
+    document.getElementById("comments-container").innerHTML += estrellas;
+    return estrellas;
+}
+
 
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(enlaceInfo).then(function(resultObj){
         if (resultObj.status === "ok")
         {
             mostrarInfo(resultObj.data);
+        }
+    });
+    getJSONData(enlaceComent).then(function(resultObj){
+        if (resultObj.status === "ok")
+        {
+            mostrarComentarios(resultObj.data);
         }
     });
 });
