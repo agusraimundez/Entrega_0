@@ -54,9 +54,17 @@ nav a {
 .pointer{
   cursor:pointer;
 }
-#agregar-comment input{
+#agregar-comment textarea{
   width: 500px;
   height: 100px;
+  resize: none;
+}
+.comments-container{
+  width: 100%;
+  
+}
+table{
+  width: 100%;
 }
 h5{
   font-size: medium;

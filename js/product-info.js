@@ -38,7 +38,7 @@ function mostrarComentarios(comentarios){
         let comment = comentarios[i];
 
         htmlContentToAppend += `
-        <div id="comments-container">
+        <div class="comments-container">
         <TABLE BORDER>
             <TR>
                 <TD><b>${comentarios[i].user}</b>-${comentarios[i].dateTime}-${mostrarEstrellas(comentarios[i].score)}</TD>
