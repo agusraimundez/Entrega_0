@@ -1,6 +1,8 @@
 let enlaceInfo = PRODUCT_INFO_URL + localStorage.getItem('prodID') + EXT_TYPE;
 let enlaceComent = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem('prodID') + EXT_TYPE;
 let info_container = document.getElementById("info-container");
+let comentarios=[];
+
 
 
 function mostrarInfo(productInfo){
@@ -37,7 +39,7 @@ function mostrarComentarios(comentarios){
     for(let i = 0; i < comentarios.length; i++){
         let comment = comentarios[i];
 
-        htmlContentToAppend += `
+        htmlContentToAppend = `
         <div class="comments-container">
         <TABLE BORDER>
             <TR>
@@ -49,8 +51,21 @@ function mostrarComentarios(comentarios){
         </TABLE>
          </div>
         `      
-        document.getElementById("comments-container").innerHTML = htmlContentToAppend; 
+        document.getElementById("comments-container").innerHTML += htmlContentToAppend; 
     }
+}
+
+function agregarComentario(){
+    let usuario={}
+    let hoy = new Date ();
+    let fecha = hoy.getFullYear() + "-" + (hoy.getMonth()+1) + "-" + hoy.getDate() + " " + hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
+
+    usuario.user = localStorage.getItem('username');
+    usuario.description =document.getElementById('comentar').value;
+    usuario.dateTime=fecha;
+    usuario.score=document.getElementById('puntaje').value;
+    comentarios.push(usuario);
+    mostrarComentarios(comentarios);
 }
 
 function mostrarEstrellas(cant){
@@ -64,7 +79,7 @@ function mostrarEstrellas(cant){
         }
         
     }
-    document.getElementById("comments-container").innerHTML += estrellas;
+    
     return estrellas;
 }
 
@@ -82,4 +97,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             mostrarComentarios(resultObj.data);
         }
     });
+    document.getElementById('enviar-comentario').addEventListener('click', ()=>{
+        agregarComentario();
+    })
 });
