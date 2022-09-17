@@ -1,7 +1,7 @@
 let enlaceInfo = PRODUCT_INFO_URL + localStorage.getItem('prodID') + EXT_TYPE;
 let enlaceComent = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem('prodID') + EXT_TYPE;
 let info_container = document.getElementById("info-container");
-let comentarios=[];
+
 
 
 
@@ -64,8 +64,14 @@ function agregarComentario(){
     usuario.description =document.getElementById('comentar').value;
     usuario.dateTime=fecha;
     usuario.score=document.getElementById('puntaje').value;
-    comentarios.push(usuario);
-    mostrarComentarios(comentarios);
+    document.getElementById("comments-container").innerHTML += 
+    `<TABLE BORDER>
+    <TR>
+    <TD><b>${usuario.user}</b>-${fecha}-${mostrarEstrellas(usuario.score)}</TD>
+    </TR>
+    <TR>
+    <TD>${usuario.description}</TD>
+    </TR></TABLE BORDER>`; 
 }
 
 function mostrarEstrellas(cant){
