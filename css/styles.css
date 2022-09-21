@@ -39,6 +39,11 @@ nav a {
   margin-left: -650px;
   
 }
+#carouselExampleControls{
+  display: inline-block;
+  width: 500px;
+  height: 300px;
+}
 
 .input-filter{
   width: 200px;
@@ -73,7 +78,7 @@ h3{
   font-size: 22px;
   font-weight: 600;
 }
-h2{
+.comments{
   position: relative;
   right: -200px;
 }
@@ -92,6 +97,31 @@ a{
   text-decoration: none;
   color: #fff;
   margin-left: 5px;
+}
+
+.size{
+  width: 300px;
+  height: 200px;
+}
+.product-rel{
+  display: grid;
+    grid-template-columns: repeat(2,1fr);
+    width: fit-content;
+    gap: 20px;
+}
+
+#productos-relacionados{
+  margin-left: 50px;
+}
+
+#productos-relacionados h5{
+  margin-left: 10px;
+}
+
+.marco{
+  border: 1px solid rgb(194, 191, 191);
+  border-radius: 4px;
+
 }
 
 
