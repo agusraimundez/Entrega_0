@@ -105,6 +105,12 @@ EJECUCIÓN:
 */
 
 document.addEventListener("DOMContentLoaded", function(e){
+    let usuario = localStorage.getItem('username');
+    if (usuario== null){
+        window.location.href = 'login.html';
+    }else{
+        document.getElementById('usuario').innerHTML=usuario;
+    }
     getJSONData(enlace).then(function(resultObj){
         if (resultObj.status === "ok")
         {

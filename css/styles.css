@@ -39,7 +39,7 @@ nav a {
   margin-left: -650px;
   
 }
-#carouselExampleControls{
+#carouselExampleDark{
   display: inline-block;
   width: 500px;
   height: 300px;
@@ -66,7 +66,6 @@ nav a {
 }
 .comments-container{
   width: 100%;
-  
 }
 table{
   width: 100%;
@@ -77,6 +76,10 @@ h5{
 h3{
   font-size: 22px;
   font-weight: 600;
+}
+#carouselExampleDark h3{
+  position: relative;
+  left: 150px;
 }
 .comments{
   position: relative;
@@ -93,10 +96,21 @@ h3{
 
 }
 
+.flexbox-container{
+  display: flex;
+  margin: 0 auto;
+  width: 85%;
+  padding-top: 20px;
+}
+
 a{
   text-decoration: none;
   color: #fff;
   margin-left: 5px;
+}
+h2{
+  right: 0px;
+  position: relative;
 }
 
 .size{
@@ -124,8 +138,14 @@ a{
 
 }
 
+div#product-detail{
+  float: left;
+}
 
-
+div#carouselExampleDark{
+  top: 5px;
+  float: right;
+}
 
 .filtro input{
   margin-left: 10px;

@@ -31,21 +31,37 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <div class="nav-link">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <span id="usuario"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-cont" aria-labelledby="dropdownMenuButton1">
+                  <li id="miCarrito"><a href="cart.html">Mi carrito</a></li>
+                  <li id="miPerfil"><a href="my-profile.html">Mi perfil</a></li>
+                  <li id="cerrarSesion"><a href="login.html">Cerrar Sesión</a></li>
+                </ul>
+              </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
-    <div class="container" id="info-container">
-    </div><br>
-    <h2 class="comments">Comentarios</h2>
+    <section class="flexbox-container">
+      <div class="container" id="info-container">
+      </div>
+      <div class="container" id="image-container">
+      </div>
+    </section><br>
     <div class="container" id="comments-container">
-    </div><br>
+      <h2 class="fw-normal text-decoration-underline">Comentarios:</h2>
+    </div>
     <div class="container" id="agregar-comment">
       <h3>Comentar</h3>
       <h5>Tu opinion</h5>
-    <textarea id="comentar"></textarea>
+      <textarea id="comentar"></textarea>
       <div class="col-sm-2">
         <select class="form-select" aria-label="Default select example" id="puntaje">
           <option selected>Selecciona un puntaje</option>
@@ -58,10 +74,9 @@
         <button type="button" class="btn btn-primary" id="enviar-comentario">Enviar</button>
       </div>
     </div>
-      <hr>
-      <div id="productos-relacionados">
-      </div>
-
+    <hr>
+    <div id="productos-relacionados">
+    </div>
   </main>
   <footer class="text-muted">
     <div class="container">
