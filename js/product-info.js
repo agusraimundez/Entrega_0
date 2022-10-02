@@ -25,7 +25,7 @@ function mostrarInfo(productInfo) {
             <p>${productInfo.soldCount}</p>
             </div>
             `
-    htmlContent += `
+            htmlContent += `
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <h3>Imágenes ilustrativas</h3>
             <div class="carousel-indicators">
@@ -130,28 +130,23 @@ function setProdID(id) {
 }
 
 function mostrarRecomendados(arrayProd) {
-
-    let arrayProducts = arrayProd.products;
+   
     let htmlContentToAppend = "";
-    for (let i = 0; i < arrayProd.products.length; i++) {
-        if (arrayProd.products[i].id == prodID) {
-            arrayProducts.splice(i, 1);
-        }
-    }
-
-    htmlContentToAppend = `
+    
+        htmlContentToAppend = `
     <h5>Productos relacionados</h5><br>   
     <div class="conteiner product-rel">
-        <div class="cursor-active marco" onclick="setProdID(${arrayProducts[1].id})">
-        <img  src="${arrayProducts[1].image}" class="size">
-        <h5>${arrayProducts[1].name}</h5>
+        <div class="cursor-active marco" onclick="setProdID(${arrayProd.relatedProducts[0].id})">
+        <img  src="${arrayProd.relatedProducts[0].image}" class="size">
+        <h5>${arrayProd.relatedProducts[0].name}</h5>
         </div>
-        <div class=" cursor-active marco" onclick="setProdID(${arrayProducts[2].id})">
-        <img  src="${arrayProducts[2].image} "class="size">
-        <h5>${arrayProducts[2].name}</h5>
+        <div class=" cursor-active marco" onclick="setProdID(${arrayProd.relatedProducts[1].id})">
+        <img  src="${arrayProd.relatedProducts[1].image} "class="size">
+        <h5>${arrayProd.relatedProducts[1].name}</h5>
         </div>
     </div>
-    `
+    ` 
+
 
     document.getElementById("productos-relacionados").innerHTML += htmlContentToAppend;
 
@@ -175,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             mostrarComentarios(resultObj.data);
         }
     });
-    getJSONData(enlaceProd).then(function (resultObj) {
+    getJSONData(enlaceInfo).then(function (resultObj) {
         if (resultObj.status === "ok") {
             mostrarRecomendados(resultObj.data);
         }
