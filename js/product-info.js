@@ -134,8 +134,9 @@ function mostrarRecomendados(arrayProd) {
     let htmlContentToAppend = "";
     
         htmlContentToAppend = `
-    <h5>Productos relacionados</h5><br>   
+      
     <div class="conteiner product-rel">
+    <h5>Productos relacionados</h5><br> 
         <div class="cursor-active marco" onclick="setProdID(${arrayProd.relatedProducts[0].id})">
         <img  src="${arrayProd.relatedProducts[0].image}" class="size">
         <h5>${arrayProd.relatedProducts[0].name}</h5>

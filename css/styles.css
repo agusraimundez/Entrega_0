@@ -70,6 +70,10 @@ nav a {
 table{
   width: 100%;
 }
+
+h1{
+  text-align: center;
+}
 h5{
   font-size: medium;
 }
@@ -122,6 +126,7 @@ h2{
     grid-template-columns: repeat(2,1fr);
     width: fit-content;
     gap: 20px;
+    padding-left: 120px;
 }
 
 #productos-relacionados{
