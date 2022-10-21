@@ -14,7 +14,7 @@ function mostrarInfo(productInfo) {
         <div id="info-container">
             <div id="product-detail">
             <div class="flex-conteiner">
-            <h1 class="flex-item">${productInfo.name}</h1> <button type="button"class="btn btn-success" class="flex-item">Comprar</button>
+            <h1 class="flex-item">${productInfo.name}</h1> <button  id="btnComprar"type="button"class="btn btn-success" class="flex-item">Comprar</button>
             </div>
             <hr>
             <h3 class="fw-normal text-decoration-underline">Precio:</h3>

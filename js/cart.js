@@ -1,5 +1,26 @@
 let enlaceCarrito = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 let arrayProducts=[];
+
+/*
+function agregarProducto(prod){
+  let producto = localStorage.getItem("prodID");
+  let myprod = {
+    name: 'Ford',
+    currency: 12,
+    unitCost: 'Mustang',
+    image: 1969,
+    count: 1
+
+};
+  arrayProducts.push(item.value);
+  localStorage.setItem('datos',JSON.stringify(list));
+  item.value="";
+  showList(list);
+
+
+}
+*/
+
 function mostrarProducto(array){
  
     let htmlContentToAppend = "";
@@ -38,13 +59,19 @@ function updateValue(array){
  document.getElementById("subTotal").innerHTML = subtotal;
 }
 
+
 document.addEventListener("DOMContentLoaded", function (e) {
 
 getJSONData(enlaceCarrito).then(function (resultObj) {
-    if (resultObj.status === "ok") {
+    if (resultObj.status === "ok"){
       arrayProducts= resultObj.data.articles;
       mostrarProducto(arrayProducts);
     }
 });
+/*
+document.getElementById("btnComprar").addEventListener("click", function(){
+  agregarProducto();
+  
+});*/
 
 });
