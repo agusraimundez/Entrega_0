@@ -3,8 +3,6 @@ let enlaceComent = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem('prodID') + 
 let enlaceProd = PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE;
 let prodID = localStorage.getItem('prodID');
 
-
-
 function mostrarInfo(productInfo) {
 
     let htmlContentToAppend = "";
@@ -14,7 +12,7 @@ function mostrarInfo(productInfo) {
         <div id="info-container">
             <div id="product-detail">
             <div class="flex-conteiner">
-            <h1 class="flex-item">${productInfo.name}</h1> <button  id="btnComprar"type="button"class="btn btn-success" class="flex-item">Comprar</button>
+            <h1 class="flex-item">${productInfo.name}</h1> <button onclick="agregarProducto()" id="btnComprar" type="button"class="btn btn-success" class="flex-item">Comprar</button>
             </div>
             <hr>
             <h3 class="fw-normal text-decoration-underline">Precio:</h3>
@@ -27,7 +25,7 @@ function mostrarInfo(productInfo) {
             <p>${productInfo.soldCount}</p>
             </div>
             `
-            htmlContent += `
+    htmlContent += `
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <h3>Imágenes ilustrativas</h3>
             <div class="carousel-indicators">
@@ -67,6 +65,7 @@ function mostrarInfo(productInfo) {
                 <span class="visually-hidden">Next</span>
             </button>
             </div>
+            
 `
 
     document.getElementById("info-container").innerHTML += htmlContentToAppend;
@@ -132,10 +131,10 @@ function setProdID(id) {
 }
 
 function mostrarRecomendados(arrayProd) {
-   
+
     let htmlContentToAppend = "";
-    
-        htmlContentToAppend = `
+
+    htmlContentToAppend = `
       
     <div class="conteiner product-rel">
     <h5>Productos relacionados</h5><br> 
@@ -148,7 +147,7 @@ function mostrarRecomendados(arrayProd) {
         <h5>${arrayProd.relatedProducts[1].name}</h5>
         </div>
     </div>
-    ` 
+    `
 
 
     document.getElementById("productos-relacionados").innerHTML += htmlContentToAppend;
@@ -156,6 +155,29 @@ function mostrarRecomendados(arrayProd) {
 }
 
 
+async function agregarProducto() {
+
+    try {
+        if(localStorage.getItem("carrito")==undefined){
+            localStorage.setItem("carrito", JSON.stringify([]));
+        }
+        let res = await fetch(enlaceInfo);
+        let miProducto = await res.json();
+
+        let micarrito=JSON.parse(localStorage.getItem("carrito"))
+
+        micarrito.push(miProducto);
+        
+        localStorage.setItem("carrito", JSON.stringify(micarrito));
+        Swal.fire({
+            icon: 'success',
+            title:'Articulo agregado!'
+        })
+    } catch (error) {
+        console.log(error);
+    }
+
+}
 document.addEventListener("DOMContentLoaded", function (e) {
     let usuario = localStorage.getItem('username');
     if (usuario == null) {
@@ -181,5 +203,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById('enviar-comentario').addEventListener('click', () => {
         agregarComentario();
     })
+     
 
 });
