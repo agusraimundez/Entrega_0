@@ -45,6 +45,19 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <div class="nav-link">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <span id="usuario"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-cont" aria-labelledby="dropdownMenuButton1">
+                  <li id="miCarrito"><a href="cart.html">Mi carrito</a></li>
+                  <li id="miPerfil"><a href="my-profile.html">Mi perfil</a></li>
+                  <li id="cerrarSesion"><a href="login.html">Cerrar Sesión</a></li>
+                </ul>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -53,30 +66,45 @@
   <main>
     <div class="container">
       <br>
-      <h4>Perfil</h4>
+      <div class="flex-container">
+        <img src="img/avatarPerfil.png" alt="fotoPerfil" id="fotoPerfil">
+        <h4>Perfil</h4>
+      </div>
+      <br>
       <hr>
-      <form class="container">
+      <form class="container needs-validation" novalidate>
         <div class="row">
           <div class="col espaciado">
-              <label for="" class="form-label">Primer nombre*</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              <label for="primerNombre" class="form-label">Primer nombre*</label>
+              <input type="text" class="form-control" id="primerNombre" required>
+              <br>
+              <label for="primerApellido" class="form-label">Primer apellido*</label>
+              <input type="text" class="form-control" id="primerApellido" required >
+              <br>
+              <label for="email" class="form-label">E-mail</label>
+              <input type="text" class="form-control" id="emailU" placeholder="name@example.com">
               
-              <label for="exampleFormControlInput1" class="form-label">Primer apellido*</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-              
-              <label for="exampleFormControlInput1" class="form-label">E-mail</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              <br>
             </div>
           <div class="col espaciado">
-              <label for="exampleFormControlInput1" class="form-label">Segundo nombre</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-              <label for="exampleFormControlInput1" class="form-label">Segundo apellido</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              <label for="segundoNombre" class="form-label">Segundo nombre</label>
+              <input type="text" class="form-control" id="segundoNombre" >
+              <br>
+              <label for="segundoApellido" class="form-label">Segundo apellido</label>
+              <input type="text" class="form-control" id="segundoApellido" >
+              <br>
               <label for="telefonoContacto" class="form-label">Telefono de contacto*</label>
-              <input type="tel" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              <input type="tel" class="form-control" id="telContacto" required>
+              <br>
+              <div class="mb-3">
+                <label for="imagenPerfil" class="form-label">Imagen de perfil</label>
+                <input type="file" class="form-control" aria-label="file example" id="imagenUsuario"onchange="Uploaded()">
+                
+              </div>
           </div>
         </div>
         <hr>
+        <button type="submit"class="btn btn-primary" id="guardarCambios">Guardar cambios</button>
       </form>
   </main>
   <footer class="text-muted">

@@ -232,11 +232,18 @@
   justify-content: space-evenly;
 }
 
-
 .checked {
   color: orange;
 }
-#select{
+#fotoPerfil{
+  width: 60px;
+  height: 60px;
+  float: right;
+}
+.flex-container {
+  justify-content: space-between;
+}
+#selectPago{
   color: red;
 }
 

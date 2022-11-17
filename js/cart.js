@@ -1,38 +1,9 @@
 let enlaceCarrito = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 let micarrito = [];
 let borro = document.getElementsByName('borrar');
-/*
-function agregarProducto(prod){
-  let producto = localStorage.getItem("prodID");
-  let myprod = {
-    name: 'Ford',
-    currency: 12,
-    unitCost: 'Mustang',
-    image: 1969,
-    count: 1
-
-};
-  arrayProducts.push(item.value);
-  localStorage.setItem('datos',JSON.stringify(list));
-  item.value="";
-  showList(list);
 
 
-}
-*/
-function cargarCarrito(array) {
-  for (let i = 0; i < array.length; i++) {
-    micarrito.push(array[i]);
-
-  }
-}
-
-function eliminar(posicion) {
-  micarrito.splice(posicion, 1);
-  localStorage.setItem("carrito", JSON.stringify(micarrito))
-  mostrarProducto();
-  calculate();
-}
+//Recorre los elementos del carrito y los muestra en una tabla
 function mostrarProducto() {
 
   let htmlContentToAppend = "";
@@ -58,42 +29,71 @@ function mostrarProducto() {
   }
 }
 
-function calculate(){
+//Carga los elementos ddel array a carrito del localStorage
+function cargarCarrito(array) {
+  for (let i = 0; i < array.length; i++) {
+    micarrito.push(array[i]);
+
+  }
+}
+
+//Elimina el elemento cuya posicion le pase y actualiza el carrito
+function eliminar(posicion) {
+  micarrito.splice(posicion, 1);
+  localStorage.setItem("carrito", JSON.stringify(micarrito))
+  mostrarProducto();
+  calculate();
+}
+
+//Desabilita los input correspondientes
+function desabilitar() {
+  if (document.getElementById('tarjetaCredito').checked) {
+    document.getElementById("numTarjeta").disabled = false;
+    document.getElementById("codSeg").disabled = false;
+    document.getElementById("vencimiento").disabled = false;
+    document.getElementById("numCuenta").disabled = true;
+  }
+  if (document.getElementById('transferenciaBanc').checked) {
+    document.getElementById("numCuenta").disabled = false;
+    document.getElementById("numTarjeta").disabled = true;
+    document.getElementById("codSeg").disabled = true;
+    document.getElementById("vencimiento").disabled = true;
+  }
+}
+//Calcula subtotales y costo de envio
+function calculate() {
 
   let cantidades = document.getElementsByName("cantProd");
   let precios = document.getElementsByName("costoProd");
   let subtotales = document.getElementsByName("SubTotales");
   let envios = document.getElementsByName("envios");
   let monedas = document.getElementsByName("moneda");
-  let subt= 0; 
-  let costoEnvio =0;
+  let subt = 0;
+  let costoEnvio = 0;
 
   for (let i = 0; i < cantidades.length; i++) {
-   
-    subtotales[i].innerHTML = parseFloat(precios[i].innerHTML)* parseFloat(cantidades[i].value);
-    if(monedas[i].innerText=="UYU"){
-      subt+=subtotales[i].innerText/40;
-    }else{
-      subt +=parseFloat(precios[i].innerHTML) * parseFloat(cantidades[i].value);
+
+    subtotales[i].innerHTML = parseFloat(precios[i].innerHTML) * parseFloat(cantidades[i].value);
+    if (monedas[i].innerText == "UYU") {
+      subt += subtotales[i].innerText / 40;
+    } else {
+      subt += parseFloat(precios[i].innerHTML) * parseFloat(cantidades[i].value);
     }
-    
-    
+
+
   }
   for (let opc of envios) {
-    if(opc.checked){
-      costoEnvio=subt*opc.value;
+    if (opc.checked) {
+      costoEnvio = subt * opc.value;
     }
     let totalisimo = subt + costoEnvio;
-  
- // document.getElementById('SubTotales').innerHTML= "$ " +  subt
-  document.getElementById('totalPos').innerHTML= "USD " +  subt
-  document.getElementById('costoE').innerHTML= "USD" +  costoEnvio
-  document.getElementById('totalisimo').innerHTML= "USD" +  totalisimo
+
+    document.getElementById('totalPos').innerHTML = "USD " + subt.toFixed(2)
+    document.getElementById('costoE').innerHTML = "USD" + costoEnvio.toFixed(2)
+    document.getElementById('totalisimo').innerHTML = "USD" + totalisimo.toFixed(2)
   }
-  
+
 }
-
-
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
@@ -105,7 +105,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
       calculate();
     }
   });
-
+  document.getElementById("usuario").innerHTML= localStorage.getItem("username");
+  //Validaciones
   (function () {
     'use strict'
 
@@ -118,40 +119,39 @@ document.addEventListener("DOMContentLoaded", function (e) {
             event.preventDefault()
             event.stopPropagation()
           }
-          event.preventDefault()
+          if (!document.getElementById('tarjetaCredito').checked && !document.getElementById('transferenciaBanc').checked) {
+            document.getElementById('selectPago').innerHTML = `Debe seleccionar una forma de pago.`
 
+          } else {
+            document.getElementById('selectPago').innerHTML = ""
+
+            if (document.getElementById('tarjetaCredito').checked) {// si eligio tarjeta de credito
+              if ((document.getElementById("numTarjeta").value != "") && (document.getElementById("codSeg").value != "") && (document.getElementById("vencimiento").value != "")) {// checkeo que no esten vacios los campos
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Has comprado con exito!'
+                })
+              } else {
+                document.getElementById('selectPago').innerHTML = `Debe seleccionar una forma de pago.`
+              }
+            } else if (document.getElementById('transferenciaBanc').checked) {// si eligio transferencia
+              if (document.getElementById("numCuenta").value != "") {//checkeo que no este vacio el campo
+
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Has comprado con exito!'
+                })
+              } else {
+                document.getElementById('selectPago').innerHTML = `Debe seleccionar una forma de pago.`
+              }
+            }
+          }
+          event.preventDefault()
           form.classList.add('was-validated')
+
         }, false)
       })
   })()
-  document.getElementById('transferenciaBanc').addEventListener('click', () => {
-    document.getElementById("numCuenta").disabled = false;
-    document.getElementById("numTarjeta").disabled = true;
-    document.getElementById("codSeg").disabled = true;
-    document.getElementById("vencimiento").disabled = true;
-  })
-  document.getElementById('tarjetaCredito').addEventListener('click', () => {
-    document.getElementById("numTarjeta").disabled = false;
-    document.getElementById("codSeg").disabled = false;
-    document.getElementById("vencimiento").disabled = false;
-    document.getElementById("numCuenta").disabled = true;
-  })
 
-  document.getElementById('btnFinalizar').addEventListener('click', () => {
-    document.getElementById('select').innerHTML = ""
-    if (!document.getElementById('tarjetaCredito').checked && !document.getElementById('transferenciaBanc').checked){
-      
-        document.getElementById('select').innerHTML += "Debe seleccionar una forma de pago"
 
-    }
-    if(document.getElementById('tarjetaCredito').checked||document.getElementById('transferenciaBanc').checked) {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Has comprado con éxito!'
-        })
-      }
-      
-  
-  })
-  
 });

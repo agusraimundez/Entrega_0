@@ -15,9 +15,7 @@ function login(){
     }
 }
 
-function logout(){
-    localStorage.clear();
-}
+
 
 document.addEventListener('DOMContentLoaded',()=>{
 
@@ -25,7 +23,5 @@ document.addEventListener('DOMContentLoaded',()=>{
         login();
     })
 
-    document.getElementById('cerrarSesion').addEventListener('click',()=>{
-        logout();
-    })
+    
 })

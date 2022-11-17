@@ -30,6 +30,19 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+              <div class="nav-link">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <span id="usuario"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-cont" aria-labelledby="dropdownMenuButton1">
+                    <li id="miCarrito"><a href="cart.html">Mi carrito</a></li>
+                    <li id="miPerfil"><a href="my-profile.html">Mi perfil</a></li>
+                    <li id="cerrarSesion"><a href="login.html">Cerrar Sesión</a></li>
+                  </ul>
+                </div>
+              </div>
           </li>
         </ul>
       </div>
@@ -76,21 +89,21 @@
         <form class="row g-3 needs-validation" novalidate>
           <div class="col-md-4">
             <label for="calle" class="form-label">Calle</label>
-            <input type="text" class="form-control" id="validationCustom01" required>
+            <input type="text" class="form-control "name="validar" id="validationCustom01" required>
             <div class="invalid-feedback">
               Ingresa una calle.
             </div>
           </div>
           <div class="col-md-6">
             <label for="numero" class="form-label">Número</label>
-            <input type="number" class="form-control" id="validationCustom02" required>
+            <input type="number" class="form-control "name="validar" id="validationCustom02" required>
             <div class="invalid-feedback">
               Ingresa un número.
             </div>
           </div>
           <div class="col-md-6">
             <label for="esquina" class="form-label">Esquina</label>
-            <input type="text" class="form-control" id="validationCustom03" required>
+            <input type="text" class="form-control"name="validar" id="validationCustom03" required>
             <div class="invalid-feedback">
               Ingresa una esquina.
             </div>
@@ -108,6 +121,7 @@
             </ul>
           </div>
           <hr>
+          <!-- Comienza el modal -->
           <div class="modal_tam">
             <div>
               <h4>Forma de pago</h4>
@@ -115,8 +129,9 @@
                 <a href="www" data-bs-toggle="modal" data-bs-target="#exampleModal"
                   style="color: blue;"><u>Seleccionar</u></a>
               </p>
+              <div id="selectPago"></div>
             </div>
-            <div id="select"></div>
+            <br>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
               <div class="modal-dialog">
@@ -124,7 +139,7 @@
                   <div class="mb-3">
                     <h3>Forma de pago</h3>
                     <hr>
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="tarjetaCredito">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="tarjetaCredito" onclick="desabilitar()">
                     <label class="form-check-label" for="flexRadioDefault1">
                       Tarjeta de crédito
                     </label>
@@ -132,25 +147,25 @@
                     <div class="col-md-12 probar">
                       <div class="tamModal">
                         <label for="calle" class="form-label">Número de tarjeta</label>
-                        <input type="text" class="form-control" id="numTarjeta">
+                        <input type="text" class="form-control" name="tarjetaC" id="numTarjeta"required>
                       </div>
                       <div class="tamModal">
                         <label for="numero" class="form-label ">Código de seg.</label>
-                        <input type="number" class="form-control" id="codSeg" >
+                        <input type="number" class="form-control" name="tarjetaC" id="codSeg" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <label for="esquina" class="form-label">Vencimento (MM/AA)</label>
-                      <input type="text" class="form-control" id="vencimiento">
+                      <input type="text" class="form-control" name="tarjetaC" id="vencimiento"required>
                     </div><br>
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="transferenciaBanc">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="transferenciaBanc"onclick="desabilitar()">
                     <label class="form-check-label" for="flexRadioDefault1">
                       Transferencia bancaria
                     </label>
                     <hr>
                     <div class="col-md-6">
                       <label for="esquina" class="form-label">Número de cuenta</label>
-                      <input type="text" id="numCuenta"class="form-control">
+                      <input type="text" id="numCuenta"name="transferencia"class="form-control"required>
                     </div>
 
                   </div>

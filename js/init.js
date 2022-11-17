@@ -40,3 +40,15 @@ let getJSONData = function(url){
         return result;
     });
 }
+function logout(){
+  localStorage.clear();
+}
+
+document.addEventListener("DOMContentLoaded", function (e) {
+
+  document.getElementById('cerrarSesion').addEventListener('click',()=>{
+    logout();
+})
+
+
+});
